@@ -6,18 +6,16 @@
   <title>Pay - Ali</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:ital,wght@0,300;0,400;0,600;0,700;0,900;1,400;1,600;1,700;1,900&display=swap" rel="stylesheet" />
   <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
   <style>
     @font-face{font-family:'SukajanBrush';src:url('SukajanBrush.otf') format('opentype');font-weight:normal;font-style:normal;font-display:swap}
-    @font-face{font-family:'Impera';src:url('Impera.ttf') format('truetype');font-weight:normal;font-style:normal;font-display:swap}
     @font-face{font-family:'Lutuna';src:url('LuTuna.otf') format('opentype');font-weight:normal;font-style:normal;font-display:swap}
-    @font-face{font-family:'Wkwkwk';src:url('Wkwkwk.ttf') format('truetype');font-weight:normal;font-style:normal;font-display:swap}
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    :root{--violet:#e74c3c;--violet-dim:rgba(231,76,60,0.15);--orange:#c0392b;--orange-dim:rgba(192,57,43,0.15);--bg:#000;--bg2:#0a0a0a;--white:#f0ece4;--white-dim:rgba(240,236,228,0.55);--mono:'Space Mono',monospace;--arena:'Wkwkwk',sans-serif;--impera:'Impera',sans-serif}
+    :root{--violet:#e74c3c;--violet-dim:rgba(231,76,60,0.15);--orange:#c0392b;--orange-dim:rgba(192,57,43,0.15);--bg:#000;--bg2:#0a0a0a;--white:#f0ece4;--white-dim:rgba(240,236,228,0.55);--mono:'Space Mono',monospace;--arena:'Inter',sans-serif;--impera:'Inter',sans-serif}
     html{cursor:none}
     #ghost-canvas{position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:9998;opacity:0.35;mix-blend-mode:screen}
-    body{background:var(--bg);color:var(--white);font-family:var(--impera);font-style:italic;overflow-x:hidden;text-transform:uppercase;text-shadow:0 0 12px rgba(255,255,255,0.06);min-height:100vh}
+    body{background:var(--bg);color:var(--white);font-family:var(--impera);font-weight:700;font-style:italic;letter-spacing:0.04em;overflow-x:hidden;text-transform:uppercase;text-shadow:0 0 12px rgba(255,255,255,0.06);min-height:100vh}
     body::before{content:'';position:fixed;inset:0;z-index:9990;pointer-events:none;opacity:0.025;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");background-size:128px}
     ::-webkit-scrollbar{width:3px}
     ::-webkit-scrollbar-track{background:var(--bg)}
@@ -26,14 +24,14 @@
     .nav-logo{font-family:'Lutuna',sans-serif;font-size:2rem;letter-spacing:0.12em;text-decoration:none;color:var(--white);display:inline-flex;align-items:center}
     .nav-logo a{color:var(--white);text-decoration:none}
     .nav-links{display:flex;gap:2.2rem;list-style:none}
-    .nav-links a{font-size:0.65rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--white);text-decoration:none;transition:color 0.2s,letter-spacing 0.3s;position:relative;font-family:var(--arena)}
+    .nav-links a{font-size:0.65rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--white);text-decoration:none;transition:color 0.2s,letter-spacing 0.3s;position:relative;font-family:var(--arena);font-weight:700;font-style:italic}
     .nav-links a::after{content:'';position:absolute;bottom:-2px;left:0;right:0;height:1px;background:var(--orange);transform:scaleX(0);transform-origin:left;transition:transform 0.2s ease}
     .nav-links a:hover::after{transform:scaleX(1)}
     .nav-links a:hover{color:var(--orange);letter-spacing:0.25em}
     .pay-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:8rem 2rem 4rem;position:relative}
     .pay-bg-text{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'SukajanBrush',serif;font-size:clamp(5rem,14vw,14rem);font-weight:600;color:rgba(240,236,228,0.12);white-space:nowrap;pointer-events:none;user-select:none;z-index:1}
     .pay-card{width:100%;max-width:460px;background:rgba(14,14,14,0.6);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.06);border-radius:1rem;padding:2.5rem 2rem;position:relative;z-index:2;text-align:center}
-    .pay-card h1{font-family:var(--arena);font-size:2rem;font-weight:400;margin-bottom:0.3rem}
+    .pay-card h1{font-family:var(--arena);font-size:2rem;font-weight:900;font-style:italic;margin-bottom:0.3rem}
     .pay-card .pay-sub{font-size:0.6rem;letter-spacing:0.18em;color:var(--white-dim);margin-bottom:2.5rem;text-transform:uppercase}
     .section-divider{width:40px;height:1px;background:var(--orange);margin:0.8rem auto 2rem}
     .pay-field{display:flex;flex-direction:column;gap:0.5rem;text-align:left;margin-bottom:1.5rem}
@@ -56,11 +54,26 @@
     .back-link{display:inline-block;margin-top:2rem;font-size:0.6rem;letter-spacing:0.15em;color:var(--white-dim);text-decoration:none;border-bottom:1px solid rgba(255,255,255,0.18);padding-bottom:2px;transition:color 0.2s,border-color 0.2s}
     .back-link:hover{color:var(--violet);border-color:var(--violet)}
     @media(max-width:768px){
+      html,body{overflow-x:hidden;width:100%}
       nav{padding:0.5rem 1.2rem}
       .nav-logo{font-size:1.4rem}
-      .pay-wrap{padding:6rem 1.2rem 3rem}
-      .pay-card{padding:2rem 1.2rem}
+      .nav-links a{font-size:0.55rem;gap:1.2rem}
+      .pay-wrap{padding:6rem 1.2rem 3rem;min-height:100dvh}
+      .pay-card{padding:2rem 1.2rem;max-width:100%}
       .pay-card h1{font-size:1.5rem}
+      .pay-bg-text{font-size:clamp(3rem,12vw,7rem)}
+    }
+    @media(max-width:380px){
+      .pay-wrap{padding:5rem 0.8rem 2rem}
+      .pay-card{padding:1.5rem 1rem}
+      .pay-card h1{font-size:1.2rem}
+      .pay-field input,.pay-field textarea{font-size:0.75rem;padding:0.7rem 0.8rem}
+    }
+    @media(max-height:600px){
+      .pay-wrap{padding:5rem 1.2rem 2rem}
+      .pay-card{padding:1.5rem 1rem}
+      .pay-bg-text{font-size:clamp(2rem,10vw,4rem)}
+      .pay-card h1{font-size:1.3rem}
     }
   </style>
 </head>
@@ -122,9 +135,9 @@ var BACKEND_URL = 'https://aliiiiii-payments-backend.onrender.com';
   function showStatus(icon, heading, msg, isError) {
     form.style.display = 'none';
     status.classList.add('show');
-    document.querySelector('.status-icon').innerHTML = icon;
+    document.querySelector('.status-icon').textContent = icon;
     document.querySelector('.pay-status h2').textContent = heading;
-    statusMsg.innerHTML = msg;
+    statusMsg.textContent = msg;
     document.querySelector('.status-icon').style.color = isError ? 'var(--violet)' : '#2ecc71';
   }
 
@@ -149,8 +162,10 @@ var BACKEND_URL = 'https://aliiiiii-payments-backend.onrender.com';
     .then(function(r) { return r.json(); })
     .then(function(order) {
       if (order.error) throw new Error(order.error);
-      var options = {
-        key: 'rzp_live_SyKlszkGegHNIx',
+      return fetch(BACKEND_URL + '/config').then(function(r) { return r.json(); })
+        .then(function(config) {
+          var options = {
+            key: config.key_id,
         amount: order.amount,
         currency: 'INR',
         name: 'Ali',
