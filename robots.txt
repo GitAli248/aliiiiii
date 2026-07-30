@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://petrixsolutions.netlify.app/sitemap.xml
