@@ -728,6 +728,7 @@
       footer .footer-links{flex-wrap:wrap;justify-content:center}
     }
 
+    @media(hover:none)and (pointer:coarse){body,body *{cursor:auto}#custom-cursor{display:none!important}}
     @media(max-width:380px){
       #hero{padding:1.2rem 1rem;min-height:100vh}
       #donut-col{width:240px;height:240px}
@@ -1343,6 +1344,7 @@ window.addEventListener('load', function(){ window.scrollTo(0, 0); });
 
 /* ── Custom cursor ── */
 (function(){
+  if ('ontouchstart' in window || navigator.maxTouchPoints > 0) return;
   var cursor = document.getElementById('custom-cursor');
   if (!cursor) return;
   document.addEventListener('mousemove', function(e) {
